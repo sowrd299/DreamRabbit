@@ -1,0 +1,192 @@
+-tactical tcg
+-bord grown by pacing 3x3 tiles
+-have avarter piece
+	-can also sommon ally units
+
+//DEFUNCT
+-resource
+	-mana (may rename)
+		-every turn, can get 1 mana for every axis struture have
+		-get 2 mana if standing on any axis
+			-if not wounded || own axis
+		-spend on cards
+	-loyalty  (may rename)
+		-us' gain 1 from playing axis card
+		-faction associated
+		-every card has loyalty requirement to play
+			-us' 1 less than mana cost
+
+-axies
+	-come on terrain cards
+	-when shaped step on, can collect
+	-collect for
+		-resources
+			-1 permanent mana
+			-1 loyalty of land type standing on
+		-alt resources
+			-1 permanent man
+			-1 mana now
+		-heal all wounds from pc (maybe terrain effect?)
+		-form control point/pillar? (defense-requiring vp)
+			//should be expesive
+		-terrain specific ability
+			-Deadland: make 4 sorounding deadland?
+			-Water: gain 3 mana?
+			-Nature: spawn fog? Heal?
+			-Cold: lock terrain? make mountain? heal?
+
+-pillar
+	-control point
+	-captured when stepped on by Scion
+	-in control 3, win
+	-formed from axies
+		-by axis power or by special card
+	-when formed by card
+		-scion still must be standing on it
+		-can have speciall, enchantment-esque effects
+			-that care about owner?
+	-
+
+-Terrain cards
+	-offten do not have a faction
+	-2x2
+		-cost 2m
+	-3x3
+		-cost 3m
+	
+-spaces
+	-space types:
+		-water (~generic)
+		-deadland (~generic)
+		-nature
+		-cold
+
+	-hybrid types	
+		-marsh (nature+water)
+		-glacier (snow+water)
+		-tiaga (nature+snow)
+		-shrubland (nature+dead)
+		...
+
+	-space effects
+		-movement:
+			-block movement (M)
+			-stop movement (m) (cannot move next turn after entering)
+		-vision
+			-block vision(V)
+			-stop vision (v)
+		-height
+			-mountain (H)
+			-hill (h)
+		
+	-space effect macros
+		-water: M
+		-forest: nature,v
+		-snow: cold, mh
+		-wall: Mv
+
+	-more space effects
+		-fog: Vision+1; Combat advantag+1 //rename shroud?
+		-miasma: units count as wounded
+		-pure: units loose all wounds and cannot get more
+
+	-The begining board:
+
+		[D| ][D| ][D| ]
+		[D|*][D| ][D|*]
+		[D| ][D| ][D| ]
+
+	-players start standing of axisis
+
+//DEFUNT
+-structures:
+	-axis (*)
+	-fortress w/ effect (F)
+	-fottress (f)
+
+
+-units
+	-have
+		-attack (targeting) style
+			-ranged (cardinal directions)
+			-magic (diagnal)
+			-melee (3 forward tiles)
+		-range
+		-attack value
+		-defense value
+			-defense perks per attack type
+	-can
+		-accrue damage
+		-move to any one adjance space
+		-attack single target
+			-based on targeting style
+
+-Shapers
+	-player avatars
+	-like units, but:
+		-imortal (can be damaged but not killed)
+		-have CASTING RADIUS
+			-determines where are allowed to cast (unit or normal) spell
+	-can play spells within radius 3
+	-can play units within radius 2
+
+	-while damaged:
+		- -1 to both cast radisus
+		-cannot gain mana from enemy axisis
+
+-combat
+	-attacker's attack vs. defender's deffense
+	- atk < def-1 => miss
+	- def-1 <= atk <= def+1 => wound (or kill if already wounded)
+	- atk > def+1 => hit (kill)
+
+-factions
+	-Drafost
+		-Cold
+		-(The Knights of)
+		-(blue dragon on light blue)
+		~Move resistant terrain
+		~high terrain
+		~Axies/Control points
+		-flying, slow
+		-dragons
+		-clear fog/miasma
+		-high defs
+		-magic attacks
+		-control/defensive/fort-building
+	-Whitemist
+		-Nature
+		-(The Hall of)
+		-(white rabbit on green)
+		-Vision resistant terrain
+		-fog
+		-healing
+		-high attack/low defs
+		-wolves and rabbits
+		-melee attacks
+		-aggro-control	
+	-Saltsan
+		-Water
+		-(The House of)
+		-(copper octopus on indigo)
+		-mana/ (unsealed)axies
+		-sea monsters
+		-pirates
+		-big fatties
+		-things that only move through water
+		-affinity for water
+		-ranged attacks
+		~fog
+		-ramp
+	-Eirmoore
+		-Deadland
+		-(The Cult of)
+		-(Black raven on brown)
+		-death/the undead
+		-affinity for being wounded
+		-can convert other terrain to dead
+		-melee
+		-higher loyalty than costs
+		-miasma
+		-destroying terrain
+		-combo-aggro/offensive/hoard

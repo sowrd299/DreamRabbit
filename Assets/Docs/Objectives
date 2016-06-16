@@ -1,0 +1,39 @@
+[X] Remove attack from Shapers/Scions
+
+[X] Implement Axies
+	[X]make them be placed with terrain
+[/] Implement Pillars
+    [X] Implement capture
+    [] Implement Victory
+	[] Implement pillar cards
+
+[] Implement card display
+
+[X] Implement card XML constructors
+    [X] For terrain cards
+
+[X] Implement decks
+
+[/] Implement spawners
+    []Card
+    []XML constructor
+
+-------
+
+[/*] Implement proper safety and errors into load code
+    *defered
+
+[X*] Improve space stats code
+    *could still be better
+
+[X] Add brightness to Saltsan and Eirmoore symbols
+
+[/] Improve "placing" code
+    []implement "unit" card
+    []implement for characters
+
+[] Improve/correct "free space" detection
+    -for strutures
+    [X] Address two axes being played on the same space
+
+[] Split LocalPlayer and (abstract) Player

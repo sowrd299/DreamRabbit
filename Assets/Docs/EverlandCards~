@@ -1,0 +1,25 @@
+/*format:
+NAME
+[Faction, Mana Cost, Loyalty]
+text
+[type, atk , rng, def]
+*/
+
+SACROFICE TO THE CULT [Eirmoore, 2, 2]
+Kill one of your characters; gain 3 loyalty to Eirmoore
+
+MAKE LOW [Eimoore, ?, ?]
+Must target adjacent to Shaper
+Remove the height of every space in a line of length 3
+
+LAYER'S DRAGON [Drafost, 7, 6]
+Flying (ignores movement terrain effects)
+Make the space you play this on a mountain (all other stats are preserved)
+[Magic, 3, 2, 6]
+
+INK SLAVE [Generic, 1, 0]
+Every turn, collect 1 more whim
+[Magic, 1, 1, 2]
+
+RESTORE GLORY [Drafost, 10, 10]
+Gain controll of all pillars you have effects on but do not control.
