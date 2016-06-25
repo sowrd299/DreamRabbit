@@ -24,7 +24,7 @@ public class CharacterCard : UnitCard {
     }
 
     //xml contstructor
-    public static Card Create(XmlNode xml, Player p){
+    public static new Card Create(XmlNode xml, Player p){
         return new CharacterCard(xml, p);
     }
 

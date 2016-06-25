@@ -48,7 +48,7 @@ public class CharacterDisp : UnitDisp {
         status.text = (c.card.Owner == GameController.Game.ActivePlayer ? attack + (c.MoveAct ? "M" : "") : "") + wounds;
     }
 
-	public void Disp() {
+	public override void Disp() {
         //updates the display
         base.Disp();
         if(at != null) at.sprite = Resources.Load<Sprite>("Art/OGA/AttackTypes/" + attackTypeNames[(int)c.card.AttackType]); //bad code

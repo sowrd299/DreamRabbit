@@ -5,6 +5,7 @@ public class SpawnerCard : UnitCard {
     
     const string cardDir = "Assets/Resources/Data/Cards.xml";
     static readonly CardLoader loader = new XmlCardLoader(cardDir);
+
     protected override string prefab{
         get{ return "Prefabs/Spawner"; }
     }

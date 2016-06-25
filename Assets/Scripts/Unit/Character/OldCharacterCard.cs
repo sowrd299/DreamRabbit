@@ -21,7 +21,7 @@ public class OldCharacterCard : TargetCard {
     }
 
     //xml contstructor
-    public static Card Create(XmlNode xml, Player p){
+    public static new Card Create(XmlNode xml, Player p){
         return new OldCharacterCard(xml, p);
     }
 

@@ -14,7 +14,7 @@ public class UnitDisp : MonoBehaviour {
         u = GetComponent<IUnit>();
     }
 
-    public void Disp(){
+    public virtual void Disp(){
         //**/ Debug.Log( spriteDir + u.Card.Name );
         s.sprite = Resources.Load<Sprite>(spriteDir + u.Card.Name);
     }

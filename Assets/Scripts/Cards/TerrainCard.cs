@@ -22,7 +22,7 @@ public class TerrainCard : TargetCard {
         }
     }
 
-    public static TerrainCard Create(XmlNode xml, Player p) {
+    public static new TerrainCard Create(XmlNode xml, Player p) {
         return new TerrainCard(xml, p);
     }
 
