@@ -9,7 +9,7 @@ public class Character : MonoBehaviour, IUnit {
     //stores status effects on an instance of a character
 
     public CharacterCard card;
-    public Card Card{
+    public UnitCard Card{
         get { return card; }
     }
 
