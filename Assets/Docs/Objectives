@@ -41,3 +41,9 @@
 [] Split LocalPlayer and (abstract) Player
 
 [X] Have unit disp use card art
+
+-------
+
+[]Have the 1st card displayed work
+[]Shuffle the bottom card of the deck
+[]Have all melle attack directions function

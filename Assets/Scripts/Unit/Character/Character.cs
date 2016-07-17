@@ -22,6 +22,7 @@ public class Character : MonoBehaviour, IUnit {
     private int wounds;
     public virtual int Wounds {
         get { return wounds + (GameController.Game.board.GetSpaceAt(transform.position).Miasma?1:0); }
+        protected set { wounds = value; }
     }
     public virtual bool IsWounded {
         get { return Wounds > 0; }
@@ -156,9 +157,9 @@ public class Character : MonoBehaviour, IUnit {
         int atkVal = AtkVal(c);
         int defVal = c.DefVal(this);
         if (atkVal > defVal + 1) {
-            c.Kill();
+            c.Kill(this);
         }else if(atkVal >= defVal - 1) {
-            c.Wound();
+            c.Wound(this);
         }
     }
 
@@ -175,17 +176,18 @@ public class Character : MonoBehaviour, IUnit {
     public virtual void ExhaustAttack() {
         //to be called after 
         ++attackAct;
-        //"cannot move after attacking" game rule
+        //"cannot move after attacking" game rule:
         //if (MoveAct) moveAct = movesPerTurn;
     }
 
 
     //WOUNDS, DEATH AND DYING
-    public virtual bool Kill() {
-        return Wound() && Wound();
+    public virtual bool Kill(Character c = null) {
+        return Wound(c) && Wound(c);
     }
 
-    public virtual bool Wound() {
+    public virtual bool Wound(Character c = null) {
+        //c : the character who delt the wound in an attack
         ++wounds;
         if (IsDead) Die();
         return true;
