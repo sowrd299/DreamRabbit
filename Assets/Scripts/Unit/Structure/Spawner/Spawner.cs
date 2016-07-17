@@ -8,6 +8,13 @@ public class Spawner : CardStructure, IUnit {
         get { return card; } // testing/
     }
 
+    public override Player Owner{
+        get { 
+            //**/Debug.Log("Using Spawner.Owner property override.");
+            return Card.Owner; 
+        }
+    }
+
     protected override int Radius{
         get { return 0; }
     }
@@ -23,6 +30,8 @@ public class Spawner : CardStructure, IUnit {
 
     public void Set( SpawnerCard card ){
         this.card = card;
+        GetComponent<SpawnerDisp>().Start();
+        GetComponent<SpawnerDisp>().Disp();
     }
 
 }

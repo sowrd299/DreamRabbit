@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TextHandDisp : HandDisp {
 
+
     static readonly Color[] modeColors = { new Color(1f,1f,1f), new Color(144f/255, 195f/255, 212f/255) };
     static readonly float[] activeAlphas = { 0.5f, 1f };
 
@@ -12,10 +13,10 @@ public class TextHandDisp : HandDisp {
         t = GetComponent<Text>();
     }
 
-    public override void Disp(Card[] hand) {
+    public override void Disp(Card[] hand, CanPlay canPlay ) {
         string s = "";
         for(int i = 0; i < hand.Length; ++i) {
-            s += "\n" + i.ToString() + ":" + hand[i].Name;
+            s += "\n" + (canPlay(hand[i])? i.ToString() + ":" : "") + hand[i].Name;
         }
         t.text = s;
     }

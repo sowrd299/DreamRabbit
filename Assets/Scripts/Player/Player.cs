@@ -7,6 +7,7 @@ public class Player {
     const int baseHandSize = 5;
 
     public PlayerCharacter avatar;
+    public CharacterCard card;
 
     private Deck deck;
     private List<Card> hand;
@@ -46,6 +47,20 @@ public class Player {
         get { return 3-(avatar.Wounds>0?1:0); }
     }
 
+    public string Name{
+        get { return card.Name; } 
+    }
+
+    public int VPs {
+        get {
+            int i = 0;
+            foreach(GameObject p in GameObject.FindGameObjectsWithTag("Pillar")){
+                i += p.GetComponent<Pillar>().getValue(this);
+            }
+            return i;
+        }
+    }
+
     public Player(CharacterCard card, Vector2 pos, int[] loyalty, string deckUrl) {
         //cards
         deck = new Deck(deckUrl, new XmlCardLoader("Cards.xml"), this);
@@ -55,10 +70,10 @@ public class Player {
         this.loyalty = loyalty;
         //avatar
         card.Owner = this;
-        avatar = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Avatar")).GetComponent<PlayerCharacter>();
-        avatar.Set(card);
-        avatar.transform.position = pos;
+        this.card = card;
+        MakeAvatar(pos);
     }
+
     
     public void SetUp() {
         //draw the opening hand
@@ -67,7 +82,12 @@ public class Player {
             Draw();
         }
     }
-
+    
+    public void MakeAvatar(Vector2 pos){
+        avatar = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Avatar")).GetComponent<PlayerCharacter>();
+        avatar.Set(card);
+        avatar.transform.position = pos;
+    }
 
     public void Turn() {
         //to be called once at the start of every turn
@@ -82,14 +102,17 @@ public class Player {
         InputController.LocalInput.ActivePlayer = this;
     }
 
-    public bool Draw() {
+    public bool Draw(int i = 1) {
         //add the top card of the deck to the hand
-        Card c = deck.Draw();
-        if(c != null){
-            hand.Add(c);
-            return true;
+        for(; i > 0; --i){
+            Card c = deck.Draw();
+            if(c != null){
+                hand.Add(c);
+            } else {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 
     public void GainMana(int amount) {
@@ -100,7 +123,7 @@ public class Player {
         manaPerTurn += amount;
     }
 
-    public void GainLoyaly(Card.Factions faction, int amount) {
+    public void GainLoyalty(Card.Factions faction, int amount) {
         loyalty[(int)faction] += amount;
     }
 

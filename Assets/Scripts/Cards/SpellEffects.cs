@@ -11,6 +11,10 @@ public static class SpellEffects {
     }
 
     //PREDICATES
+    public static bool Character(Vector2 space) {
+        return GameController.Game.GetAtPos<Character>(space) != null;
+    }
+
     public static bool Wounded(Vector2 space) {
         //for targeting wounded units
         Character c = GameController.Game.CharAtPos(space);
@@ -31,10 +35,15 @@ public static class SpellEffects {
         GameController.Game.board.GetSpaceAt(space).SetEffect(Space.Effects.MIASMA);
     }
 
+    public static void Ferocity(Vector2 space) {
+        //give target unit an attack buf 
+        GameController.Game.GetAtPos<Character>(space).ApplyBuff(CharacterCard.Stats.ATK, 2);
+    }
+
     //AXIS EFFECTS
     public static void Resources(Player p, Space s) {
         p.GainManaPerTurn(1);
-        p.GainLoyaly((Card.Factions)s.Type + 1, 1);
+        p.GainLoyalty((Card.Factions)s.Type + 1, 1);
     }
 
     public static void AltResources(Player p) {

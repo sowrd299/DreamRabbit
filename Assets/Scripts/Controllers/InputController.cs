@@ -7,6 +7,8 @@ public class InputController : MonoBehaviour {
         get { return GameObject.FindGameObjectWithTag("GameController").GetComponent<InputController>();  }
     }
 
+    HUDController hud;
+
     public enum Modes { OFF, NONE, MOVE_CHAR, PLACE_BOARD, PLACE_CHAR, TARGET }
     /* off: inactive/unreceptive
      * none: ready for new command
@@ -43,6 +45,7 @@ public class InputController : MonoBehaviour {
 	void Start () {
         cursor = transform.Find("Cursor").gameObject;
         activeCursor = Instantiate(cursor);
+        hud = GameObject.FindWithTag("HUD").GetComponent<HUDController>();
     }
 	
 	void Update () {
@@ -151,7 +154,12 @@ public class InputController : MonoBehaviour {
                     if(active == null) {
                         mode = Modes.NONE;
                     } else {
-                        if (active.card.Owner != ActivePlayer) active = null;
+                        //select the clicked on character
+                        hud.Zoom(active.Card);
+                        if (active.card.Owner != ActivePlayer){
+                            active = null;
+                            mode = Modes.NONE;
+                        }
                         else Debug.Log("Have selected " + active.card.Name);
                     }
                     break;
@@ -161,8 +169,11 @@ public class InputController : MonoBehaviour {
         if (mode == Modes.NONE) {
             for (int i = 0; i < ActivePlayer.Hand.Length && i < 10; ++i) {
                 if (Input.GetKeyDown("" + i) || (i == 0 && Input.GetKeyDown("`"))) { // acccepts ` as an alterative to 0
-                    /**/Debug.Log("Playing a " + ActivePlayer.Hand[i].GetType().ToString());
-                    ActivePlayer.Play(ActivePlayer.Hand[i], this);
+                    hud.Zoom(ActivePlayer.Hand[i]);
+                    if (Input.GetKey(KeyCode.Tab)){
+                        //**/Debug.Log("Playing a " + ActivePlayer.Hand[i].GetType().ToString());
+                        ActivePlayer.Play(ActivePlayer.Hand[i], this);
+                    }
                 }
             }
         }
@@ -211,7 +222,8 @@ public class InputController : MonoBehaviour {
     }
 
     protected void Clear() {
-        //reset to default stat
+        //reset to default state
+        hud.ClearZoom();
         mode = Modes.NONE;
         placing = null;
         active = null;

@@ -57,7 +57,7 @@ public class Space : MonoBehaviour {
         //the number used to calculate bonuses confered to standy
         get { return Height>2?2:Height; }
     }
-
+    
     public void Set(Types t, int m = 0, int v = 0, int h = 0, Effects effect = Effects.NONE ) {
         //m and v should be desigher value +1
         //give 0 for default value based on type

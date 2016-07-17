@@ -7,7 +7,7 @@ public class CharacterDisp : UnitDisp {
     static string[] attackTypeNames = { "Melee", "Ranged", "Magic" };
     
     protected override string spriteDir{
-        get{ return "Art/OGA/Characters/"; }
+        get{ return "Art/Units/Characters/"; }
     }
 
     SpriteRenderer at; //the attack type disp
@@ -45,13 +45,20 @@ public class CharacterDisp : UnitDisp {
 
     void Update() {
         //continually update status
+        //runs once per frame
         status.text = (c.card.Owner == GameController.Game.ActivePlayer ? attack + (c.MoveAct ? "M" : "") : "") + wounds;
+        updateStats(); //maybe should not run once per frame...
     }
 
 	public override void Disp() {
         //updates the display
         base.Disp();
         if(at != null) at.sprite = Resources.Load<Sprite>("Art/OGA/AttackTypes/" + attackTypeNames[(int)c.card.AttackType]); //bad code
+        updateStats();
+    }
+
+    protected virtual void updateStats() {
+        //updates display of stats 
         foreach(var key in stats.Keys) {
             stats[key].text = c.GetStat(key).ToString();
         }

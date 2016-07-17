@@ -22,7 +22,7 @@ public class TargetCard : Card {
     protected int radius;
 
     // (prelimary) xml constructor and factor
-    public static Card Create(XmlNode xml, Player p){
+    public static new Card Create(XmlNode xml, Player p){
         return new TargetCard(xml, p);
     }
 

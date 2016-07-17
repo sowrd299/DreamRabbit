@@ -7,13 +7,13 @@ public class SpaceDisp : MonoBehaviour {
     SpriteRenderer sr;
     public GameObject fog;
 
-    string spritesFolder = "Art/OGA/Terrain/";
-    string[] sprites = { "Dirt", "Water", "Grass", "Snow" };
+    static string spritesFolder = "Art/OGA/Terrain/";
+    static string[] sprites = { "Dirt", "Water", "Grass", "Snow" };
 
-    private string typeNames = "DWNC";
-    private string moveNames = " mM";
-    private string visionNames = " vV";
-    private string heightNames = " hH";
+    static private string typeNames = "DWNC";
+    static private string moveNames = " mM";
+    static private string visionNames = " vV";
+    static private string heightNames = " hH";
 
     public void Start() {
         tm = GetComponentInChildren<TextMesh>();
@@ -29,10 +29,18 @@ public class SpaceDisp : MonoBehaviour {
     }
 
 	public void Disp() {
-        tm.text = new string( new char[] { moveNames[s.Move], visionNames[s.Vision], heightNames[s.Height], s.Fog? 'F':' ', s.Miasma?'T':' ' } );
+        tm.text = StatText(s); 
         sr.sprite = Resources.Load<Sprite>(spritesFolder + sprites[(int)s.Type]);
         fog.SetActive(s.Fog || s.Miasma);
         fog.GetComponent<SpriteRenderer>().color = s.Miasma ? new Color(0.2f, 1, 0) : new Color(1,1,1);
+    }
+
+    public static string StatText( Space s ){
+        return new string( new char[] { moveNames[s.Move], visionNames[s.Vision], heightNames[s.Height], s.Fog? 'F':' ', s.Miasma?'T':' ' } );
+    }
+
+    public static string Text( Space s ){
+        return typeNames[(int)s.Type] + StatText(s);
     }
 
 }

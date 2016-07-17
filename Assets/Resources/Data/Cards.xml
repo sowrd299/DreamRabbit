@@ -14,14 +14,19 @@
          Ranged - 1
          Twisted (magic) - 2 -->
          
+    <CharacterCard name="Soulless" cost="1" loyalty="1" faction="1" attackType="0" atk="1" rng="1" def="2"/>
     <CharacterCard name="Rabbit" cost="2" loyalty="2" faction="3" attackType="0" atk="3" rng="1" def="1"/>
     <CharacterCard name="Magrabus" cost="3" loyalty="3" faction="3" attackType="2" atk="3" rng="2" def="1"/>
     <CharacterCard name="Sailor" cost="4" loyalty="3" faction="2" attackType="1" atk="4" rng="3" def="2"/>
 
     <!-- TARGET CARDS -->
 
-    <TargetCard name="Conjure Fog" cost="1" loyalty="1" faction="3" effect="ConjureFog"/>
-    <TargetCard name="Spill Miasma" cost="2" loyalty="1" faction="1" effect="SpillMiasma" pred="Wounded"/>
+    <TargetCard name="Conjure Fog" cost="1" loyalty="1" faction="3" effect="ConjureFog"
+        text = "Give a space Fog."/>
+    <TargetCard name="Spill Miasma" cost="2" loyalty="1" faction="1" effect="SpillMiasma" pred="Wounded"
+        text = "Kill a wounded character. Give its space Miasma."/>
+    <TargetCard name="Ferocity" cost="1" loyalty="1" faction="3" effect="Ferocity" pred="Character"
+        text = "Give a character Attack +2 this turn."/>
     
     <!-- TERRAIN CARDS -->
 
@@ -51,5 +56,11 @@
     <TerrainCard name="Toxic Den" cost="4" loyalty="2" faction="1" w="3" h="3" move="000220020" space_effect="020222020" axes="000011000" />
     <TerrainCard name="Open Sea" cost="2" loyalty="1" faction="2" w="2" h="2" type="1111" move="0330" axes="1010"/>
     <TerrainCard name="Deep Wood" cost="5" loyalty="4" faction="3" w="3" h="3" type="222222200" vision="300300000" height="220000000" axes="110000000"/>
+    <TerrainCard name="Withering Woods" cost="2" loyalty="0" faction="0" w="2" h="2" type="2002" axes="0010"/>
+
+    <!-- SPAWNER CARDS -->
+
+    <SpawnerCard name="Den" cost="2" loyalty="2" faction="3" ability="Rabbit"/>
+    <SpawnerCard name="Crypt" cost="1" loyalty="4" faction="1" ability="Soulless"/>
 
 </Cards>

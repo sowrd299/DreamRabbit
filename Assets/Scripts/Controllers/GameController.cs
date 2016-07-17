@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
+
+    protected GameStats stats{
+        get { return GameStats.Current; }
+    }
 
     public static GameController Game {
         get { return GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();  }
@@ -18,7 +23,10 @@ public class GameController : MonoBehaviour {
     int[,] visionMap = new int[3, 3];
     int[,] heightMap = new int[3, 3];
 
-    Player[] players;
+    Player[] players{
+        get { return stats.Players; }
+    }
+
     int activePlayer;
     public Player ActivePlayer {
         get { return players[activePlayer]; }
@@ -28,10 +36,12 @@ public class GameController : MonoBehaviour {
         board.Set(typesMap, moveMap, visionMap, heightMap);
         activePlayer = 0;
         // testing
-        players = new Player[]{
-                new Player(new CharacterCard("Sailor",0,0,0,null,CharacterCard.AttackTypes.MAGIC,3,4,5) ,new Vector2(0,1),new int[] {0,2,2,0,0}, "Saltsan.csv"),
-                new Player(new CharacterCard("WalkingRabbit",0,0,0,null,CharacterCard.AttackTypes.MAGIC,4,2,5) ,new Vector2(2,1),new int[] {0,0,0,3,0}, "Whitemist.csv") };
-        GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Set((new XmlCardLoader("Cards.xml")).Load("Rabbit", players[1]), players[1]);
+        Player[] players = new Player[]{
+                new Player(new PlayerCard("Sailor", Card.Factions.SALT) ,new Vector2(0,1),new int[] {0,2,2,0,0}, "Saltsan.csv"),
+                new Player(new PlayerCard("WalkingRabbit", Card.Factions.WHITE) ,new Vector2(2,1),new int[] {0,0,0,3,0}, "Whitemist.csv") };
+        GameStats stats = new GameStats(players);
+        stats.MakeCurrent();
+        //GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Set((new XmlCardLoader("Cards.xml")).Load("Rabbit", players[1]), players[1]);
         // /testing
         foreach(Player p in players){
             p.SetUp();
@@ -53,6 +63,10 @@ public class GameController : MonoBehaviour {
             }
         }
         ActivePlayer.RunTurn();
+        //check for the winner
+        if(stats.Winner != null){
+            SceneManager.LoadScene("EndGame");
+        }
     }
 
     public bool placeBoard(Board b, Vector2 pos) {

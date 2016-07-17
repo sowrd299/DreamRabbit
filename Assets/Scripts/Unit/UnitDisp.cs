@@ -6,7 +6,7 @@ public class UnitDisp : MonoBehaviour {
     private IUnit u;
 
     protected virtual string spriteDir{
-        get{ return "Art/"; }
+        get{ return "Art/Units/"; }
     }
 
 	public void Start () {

@@ -5,19 +5,20 @@
 	[X]make them be placed with terrain
 [/] Implement Pillars
     [X] Implement capture
-    [] Implement Victory
+    [X] Implement Victory
 	[] Implement pillar cards
 
-[] Implement card display
+[X] Implement card display
+    [] Implement card text generation
 
 [X] Implement card XML constructors
     [X] For terrain cards
 
 [X] Implement decks
 
-[/] Implement spawners
-    []Card
-    []XML constructor
+[X] Implement spawners
+    [X]Card
+    [X]XML constructor
 
 -------
 
@@ -30,11 +31,13 @@
 [X] Add brightness to Saltsan and Eirmoore symbols
 
 [/] Improve "placing" code
-    []implement "unit" card
-    []implement for characters
+    [X]implement "unit" card
+    [X]implement for characters
 
-[] Improve/correct "free space" detection
+[/] Improve/correct "free space" detection
     -for strutures
     [X] Address two axes being played on the same space
 
 [] Split LocalPlayer and (abstract) Player
+
+[X] Have unit disp use card art

@@ -6,11 +6,16 @@ public class CharacterCard : UnitCard {
 
     //store fixed individual stats of a character
 
-    protected override string prefab{
+    protected override string prefab {
         get{ return "Prefabs/Character"; }
     }
 
+    protected override string imageDir {
+        get { return base.imageDir + "Characters/"; }
+    }
+
 	public enum AttackTypes { MELEE, RANGED, MAGIC }
+    public static readonly string[] AttackTypeNames = { "Melee", "Ranged", "Twisted" };
     public enum Stats { ATK, RNG, DEF }
 
     AttackTypes attackType;
@@ -21,6 +26,17 @@ public class CharacterCard : UnitCard {
     Dictionary<Stats, int> stats;
     public Dictionary<Stats, int> Stat {
         get { return stats; }
+    }
+
+    public override string Text{
+        get {
+            //maybe should not permimently add this to text...
+            return base.Text + "\n" + 
+                    Stat[Stats.ATK].ToString() + "-" + 
+                    Stat[Stats.RNG].ToString() + "-" +
+                    AttackTypeNames[(int)AttackType] + "-" + 
+                    Stat[Stats.DEF].ToString();
+        }
     }
 
     //xml contstructor
@@ -52,10 +68,6 @@ public class CharacterCard : UnitCard {
         stats.Add(Stats.DEF, def);
     }
 
-    public override bool Play(InputController i, Exhaust ex, Vector2 from = default(Vector2), int r = 0) {
-        r = r-1 >= 0? r-1:0; //reduce r by one to a mimimum of zero; per game rules
-        return base.Play(i, ex, from, r);
-    }
 
     protected override void set( GameObject go ){
         /**/Debug.Log("Setting the character.");

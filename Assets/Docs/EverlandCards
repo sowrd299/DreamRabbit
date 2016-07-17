@@ -8,11 +8,11 @@ text
 SACROFICE TO THE CULT [Eirmoore, 2, 2]
 Kill one of your characters; gain 3 loyalty to Eirmoore
 
-MAKE LOW [Eimoore, ?, ?]
+MAKE LOW [Eirmoore, ?, ?]
 Must target adjacent to Shaper
 Remove the height of every space in a line of length 3
 
-LAYER'S DRAGON [Drafost, 7, 6]
+LAYER'S DRAGON [Darfost, 7, 6]
 Flying (ignores movement terrain effects)
 Make the space you play this on a mountain (all other stats are preserved)
 [Magic, 3, 2, 6]
@@ -21,8 +21,13 @@ INK SLAVE [Generic, 1, 0]
 Every turn, collect 1 more whim
 [Magic, 1, 1, 2]
 
-RESTORE GLORY [Drafost, 10, 10]
+RESTORE GLORY [Darfost, 10, 10]
 Gain controll of all pillars you have effects on but do not control.
 
 OCEAN MIST [Saltsan, 0, 1]
 Add Fog to a water space.
+
+WAMPING WILLOW [Whitemist, 4, 3]
+This gets range +1 while on a V space.
+Stationary.
+[Magic, 5, 1, 3]

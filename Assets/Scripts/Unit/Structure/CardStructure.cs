@@ -36,7 +36,7 @@ public class CardStructure : Structure{
 
     protected virtual void Exhaust(Card c){
         //something tbd by game design
-        owner.ExhaustPlay(c);
+        Owner.ExhaustPlay(c);
     }
 
 }

@@ -2,6 +2,7 @@
 using System.Xml;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class TerrainCard : TargetCard {
 
@@ -24,6 +25,29 @@ public class TerrainCard : TargetCard {
 
     public static new TerrainCard Create(XmlNode xml, Player p) {
         return new TerrainCard(xml, p);
+    }
+
+    private string text;
+    public override string Text{
+        get{
+            if(text==null){
+                string t = "";
+                Board b = Board;
+                //for( int i = 0; i < types.GetLength(0); ++i ){
+                for( int i = types.GetLength(0)-1; i >= 0; --i ){
+                    for( int j = 0; j < types.GetLength(1); ++j ){
+                        Vector2 v = new Vector2(j,i);
+                        t += axes.Contains(v)? "*" : " ";
+                        t += SpaceDisp.Text(b.GetSpaceAt(v));
+                        t += "|";
+                    }
+                    t += "\n";
+                }
+                GameObject.Destroy(b.gameObject);
+                text = t;
+            }
+            return text;
+        }
     }
 
     protected TerrainCard(XmlNode xml, Player p):

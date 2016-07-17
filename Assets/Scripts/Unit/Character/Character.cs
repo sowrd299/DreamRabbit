@@ -13,6 +13,10 @@ public class Character : MonoBehaviour, IUnit {
         get { return card; }
     }
 
+    public string Name{
+        get { return Card.Name; }
+    }
+
     Dictionary<CharacterCard.Stats, int> buffs;
 
     private int wounds;
@@ -160,7 +164,8 @@ public class Character : MonoBehaviour, IUnit {
     public virtual void ExhaustAttack() {
         //to be called after 
         ++attackAct;
-        if (MoveAct) moveAct = movesPerTurn;
+        //"cannot move after attacking" game rule
+        //if (MoveAct) moveAct = movesPerTurn;
     }
 
 

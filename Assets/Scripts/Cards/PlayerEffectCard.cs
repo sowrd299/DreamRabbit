@@ -8,8 +8,8 @@ class PlayerEffectCard : Card {
 
     PlayerEffect effect;
 
-    public PlayerEffectCard(string name, int cost, int loyalty, Factions faction, Player owner, PlayerEffect effect) :
-        base(name, cost, loyalty, faction, owner)
+    public PlayerEffectCard(string name, int cost, int loyalty, Factions faction, Player owner, PlayerEffect effect, string text = "") :
+        base(name, cost, loyalty, faction, owner, text)
     {
         this.effect = effect;
     }

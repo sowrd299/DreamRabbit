@@ -22,4 +22,8 @@ public class Pillar : Structure {
         //to be called once a trun
     }
 
+    public virtual int getValue(Player p){
+        return p == Owner? 1:0;
+    }
+
 }
