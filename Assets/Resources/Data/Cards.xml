@@ -27,6 +27,8 @@
         text = "Kill a wounded character. Give its space Miasma."/>
     <TargetCard name="Ferocity" cost="1" loyalty="1" faction="3" effect="Ferocity" pred="Character"
         text = "Give a character Attack +2 this turn."/>
+    <TargetCard name="Violent Madness" cost="1" loyalty="2" faction="1" effect="ViolentMadness" pred="WoundedOnDead"
+        text = "Give a wounded character on Deadland Attack +2 and Defense +2 this turn."/>
     
     <!-- TERRAIN CARDS -->
 

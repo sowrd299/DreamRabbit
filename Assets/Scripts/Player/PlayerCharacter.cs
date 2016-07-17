@@ -19,10 +19,4 @@ public class PlayerCharacter : Character {
         return false;
     }
 
-    public override void Move(Space s){
-        Pillar p = GameController.Game.GetAtPos<Pillar>(s.transform.position);
-        if(p!=null) p.Capture(card.Owner);
-        base.Move(s);
-    }
-
 }

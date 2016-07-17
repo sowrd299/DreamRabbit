@@ -46,6 +46,11 @@ public class Character : MonoBehaviour, IUnit {
     }
     Vector2 facing;
 
+    protected virtual bool capturesPillars{
+        //stores weather or not the character is elligable to capture pillars
+        get { return true; }
+    }
+
     public void Set(CharacterCard card) {
         this.card = card;
         ClearBuffs();
@@ -90,6 +95,12 @@ public class Character : MonoBehaviour, IUnit {
 
     public virtual void Move(Space s) {
         //moves the character to the given space
+        if(capturesPillars){
+            // capture pillar
+            Pillar p = GameController.Game.GetAtPos<Pillar>(s.transform.position);
+            if(p!=null) p.Capture(card.Owner);
+            // /capture pillar
+        }
         facing = s.transform.position - transform.position; //update facing
         transform.position = s.transform.position;
         if (IsDead) Die();
